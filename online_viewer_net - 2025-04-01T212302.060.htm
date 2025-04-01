@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCM est2024 | Premium Greymouth Apparel</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #e94560;
+            --light: #f8f1f1;
+            --dark: #0f0e17;
+            --accent: #00b4d8;
+            --gold: #ffd700;
+            --text: #333;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 10px;
+        }
+        
+        /* Header with Parallax Effect */
+        header {
+            background: linear-gradient(rgba(10, 10, 30, 0.7), rgba(10, 10, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            padding: 0 30px;
+            transform: translateY(0);
+            transition: var(--transition);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            letter-spacing: 2px;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        header h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .scrolled {
+            background: rgba(15, 14, 23, 0.95);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+        }
+        
+        /* Hero Section */
+        .hero-image {
+            height: 70vh;
+            min-height: 500px;
+            background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            position: relative;
+            margin-bottom: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-attachment: fixed;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.6));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .hero-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516762689617-e1cffcef479d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .intro h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .intro h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .intro p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text);
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 3rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: relative;
+            transform: translateY(0);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .product-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.03);
+        }
+        
+        .product-info {
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .product-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .product-info p {
+            font-family: 'Montserrat', sans-serif;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .price::before {
+            content: 'NZ$';
+            font-size: 1rem;
+            margin-right: 5px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(233, 69, 96, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1.5rem;
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 15px 30px rgba(255,255,255,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+        }
+        
+        .footer-column p {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* Floating Elements */
+        .floating {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 5rem;
+            color: var(--secondary);
+        }
+        
+        .floating-2 {
+            bottom: 30%;
+            right: 10%;
+            font-size: 4rem;
+            color: var(--accent);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            header p, .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .intro h2, .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .product-info h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            header {
+                height: auto;
+                padding: 8rem 0;
+            }
+            
+            .hero-image {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <div class="logo">HCM est2024</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Header -->
+    <header id="home">
+        <div class="header-content">
+            <div class="logo">HCM est2024</div>
+            <h1>Crafted Apparel<br>From Greymouth</h1>
+            <p>Premium quality clothing inspired by the rugged beauty of New Zealand's West Coast. Each piece tells a story of craftsmanship and adventure.</p>
+            <div>
+                <a href="#collection" class="btn">Explore Collection</a>
+                <a href="#about" class="btn btn-outline">Our Story</a>
+            </div>
+        </div>
+        
+        <!-- Floating decorative elements -->
+        <div class="floating floating-1">HCM</div>
+        <div class="floating floating-2">2024</div>
+    </header>
+    
+    <!-- Hero Section -->
+    <div class="hero-image" id="about">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>West Coast Heritage</h2>
+            <p>Born in Greymouth, our apparel embodies the spirit of New Zealand's wild West Coast. We combine traditional craftsmanship with contemporary design to create clothing that stands the test of time.</p>
+            <a href="#collection" class="btn">View Collection</a>
+        </div>
+    </div>
+    
+    <!-- Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <h2>The HCM Ethos</h2>
+            <p>At HCM est2024, we believe in quality over quantity. Each garment is carefully designed with attention to detail, using premium materials that offer both comfort and durability.</p>
+            <p>Our small-scale production ensures ethical manufacturing practices and minimal environmental impact, while supporting local New Zealand businesses.</p>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products-section" id="collection">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Collection</h2>
+            </div>
+            
+            <div class="products">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="tag">Best Seller</div>
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="product-info">
+                        <h3>Dark Gray T-Shirt</h3>
+                        <p>Crafted from premium 100% organic cotton with a tailored fit. Features our signature embroidered logo for subtle branding.</p>
+                        <div class="price">39.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="tag">New Arrival</div>
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="product-info">
+                        <h3>Dark Gray Hoodie</h3>
+                        <p>Heavyweight French terry fabric with reinforced stitching. Features a lined hood and spacious kangaroo pocket.</p>
+                        <div class="price">79.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="tag">Limited Edition</div>
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="product-info">
+                        <h3>Multicloud Shirt</h3>
+                        <p>Exclusive hand-dyed pattern on soft brushed cotton. Each piece is unique with subtle variations in the cloud design.</p>
+                        <div class="price">59.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="product-info">
+                        <h3>White T-Shirt</h3>
+                        <p>Classic crew neck in heavyweight cotton with double-stitched seams for durability. Opaque fabric that maintains its shape.</p>
+                        <div class="price">34.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="tag">Winter Essential</div>
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="product-info">
+                        <h3>White Hoodie</h3>
+                        <p>Premium fleece lining with ribbed cuffs and hem. Features our minimalist logo in tonal embroidery for a clean look.</p>
+                        <div class="price">74.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>HCM est2024</h3>
+                <p>Premium apparel crafted in Greymouth, New Zealand. Established 2024.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="mailto:contact@hcm.com"><i class="far fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <p><a href="#home" style="color: white; text-decoration: none;">Home</a></p>
+                <p><a href="#collection" style="color: white; text-decoration: none;">Collection</a></p>
+                <p><a href="#about" style="color: white; text-decoration: none;">Our Story</a></p>
+                <p><a href="#contact" style="color: white; text-decoration: none;">Contact</a></p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Greymouth, New Zealand</p>
+                <p>Email: info@hcmest2024.com</p>
+                <p>Phone: +64 3 123 4567</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 HCM est2024. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- JavaScript for scroll effects -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav-container');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.product-card, .section-title, .intro h2, .intro p');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.product-card, .section-title, .intro h2, .intro p').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
